@@ -1,0 +1,14 @@
+services:
+  my_app:
+    build:
+      context: .
+      target: runner
+    container_name: fast_api_base
+    # restart: on-failure
+    ports:
+      - "8080:8000"
+    environment:
+      HAPPY_FUN_TIMES: "now"
+      PYTHONPATH: ./app/
+    volumes:
+      - ./app/:/app/app
