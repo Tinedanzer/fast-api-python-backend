@@ -11,3 +11,7 @@ Checks for flake8 compatibility first and then runs pytest.
 
 Run `docker-compose build` then `docker-compose up`.
 It is setup to allow for hot-swap reloads for ease of development.
+
+## Swagger docs
+
+Run the container locally and go to `localhost:8080/docs`
