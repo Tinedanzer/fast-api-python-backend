@@ -1,3 +1,6 @@
+volumes:
+  my_db:
+
 services:
   my_app:
     build:
@@ -10,5 +13,35 @@ services:
     environment:
       HAPPY_FUN_TIMES: "now"
       PYTHONPATH: ./app/
+      DB_USER_MIG: user
+      DB_PASSWORD_MIG: password
+      DB_HOST: example_db
+      DB_PORT: 3306
+      DB_NAME: fast_api_base
     volumes:
       - ./app/:/app/app
+    depends_on:
+      - "db"
+    links:
+      - "db:example_db"
+  db:
+    image: mysql/mysql-server:5.7
+    restart: always
+    container_name: example_db
+    environment:
+      MYSQL_DATABASE: 'fast_api_base'
+      # So you don't have to use root, but you can if you like
+      MYSQL_USER: 'user'
+      # You can use whatever password you like
+      MYSQL_PASSWORD: 'password'
+      # Password for root access
+      MYSQL_ROOT_PASSWORD: 'super_password'
+    ports:
+      # <Port exposed> : < MySQL Port running inside container>
+      - '53306:3306'
+    expose:
+      # Opens port 3306 on the container
+      - '3306'
+      # Where our data will be persisted
+    volumes:
+      - my_db:/var/lib/mysql

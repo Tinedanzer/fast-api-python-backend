@@ -5,7 +5,7 @@ clean:
 		-o -name '*.pyc' -delete -print
 
 build:
-	docker build --target builder -t src_container .
+	docker build --target runner -t src_container .
 
 build-test:
 	docker build --target tester -t src_test .

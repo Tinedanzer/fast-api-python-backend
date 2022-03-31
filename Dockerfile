@@ -16,11 +16,14 @@ RUN pip install poetry==1.1 && \
     poetry config virtualenvs.create false && \
     poetry install --no-dev --no-root
 
+COPY ./alembic.ini ./
 COPY ./app ./app/
 
 
 FROM base as runner
-CMD poetry run uvicorn --host=0.0.0.0 app.main:fast_app --reload --reload-dir /app/app/
+CMD sleep 5 && \
+    poetry run alembic upgrade head && \
+    poetry run uvicorn --host=0.0.0.0 app.main:fast_app --reload --reload-dir /app/app/
 
 
 FROM base as tester
