@@ -16,4 +16,4 @@ test: build-test
 	docker rm -f src_test || echo "container removed"
 
 run: build
-	docker run --rm -p 8080:8000 --name src_container src_container
+	docker run --rm -p 8080:8000 --env-file .env.local --name src_container src_container

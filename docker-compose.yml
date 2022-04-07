@@ -18,12 +18,16 @@ services:
       DB_HOST: example_db
       DB_PORT: 3306
       DB_NAME: fast_api_base
+      CELERY_BROKER: "redis://example_redis:6379"
+      CELERY_BACKEND: "redis://example_redis:6379"
     volumes:
       - ./app/:/app/app
     depends_on:
       - "db"
+      - "redis"
     links:
       - "db:example_db"
+      - "redis:example_redis"
   db:
     image: mysql/mysql-server:5.7
     restart: always
@@ -45,3 +49,10 @@ services:
       # Where our data will be persisted
     volumes:
       - my_db:/var/lib/mysql
+  redis:
+    image: redis:alpine
+    container_name: example_redis
+    ports:
+      - '6379:6379'
+    expose:
+      - '3306'
