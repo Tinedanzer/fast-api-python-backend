@@ -10,7 +10,7 @@ router = APIRouter()
 
 
 @router.get(
-    "/widget",
+    "/",
 )
 def get_widget() -> Widget:
     return Widget()

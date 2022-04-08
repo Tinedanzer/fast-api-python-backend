@@ -5,15 +5,15 @@ clean:
 		-o -name '*.pyc' -delete -print
 
 build:
-	docker build --target runner -t src_container .
+	docker build --target runner -t fasi_api_base .
 
 build-test:
-	docker build --target tester -t src_test .
+	docker build --target tester -t fasi_api_base_test .
 
 test: build-test
-	docker rm -f src_test || echo "container removed"
-	docker run --name src_test src_test
-	docker rm -f src_test || echo "container removed"
+	docker rm -f fasi_api_base_test || echo "container removed"
+	docker run --name fasi_api_base_test fasi_api_base_test
+	docker rm -f fasi_api_base_test || echo "container removed"
 
 run: build
-	docker run --rm -p 8080:8000 --env-file .env.local --name src_container src_container
+	docker run --rm -p 8080:8000 --env-file .env.local --name fasi_api_base fasi_api_base

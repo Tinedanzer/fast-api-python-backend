@@ -1,3 +1,5 @@
+from ast import arg
+from loguru import logger
 from app.resources.celery import cel_app
 
 
@@ -8,6 +10,6 @@ from app.resources.celery import cel_app
     argsrepr="(arg_1, arg_2)",
 )
 def dummy_func(arg_1: str, arg_2: int) -> None:
-    print(arg_1)
-    print(arg_2)
-    pass
+    logger.info(arg_1)  # , serialize=True
+    logger.info(arg_2)
+    print(arg_1, arg_2)

@@ -3,7 +3,7 @@ from os import getenv
 
 
 DEFAULT_QUEUE = "default"
-DEFAULT_QUEUE = "subtasks"
+SUBTASKS_QUEUE = "subtasks"
 DATABASE_QUEUE = "database"
 
 
@@ -21,6 +21,6 @@ cel_app.autodiscover_tasks(
 cel_app.conf.task_default_queue = DEFAULT_QUEUE
 cel_app.conf.task_routes = {
     "app.services.celery.database.*": {"queue": DATABASE_QUEUE},
-    "app.services.celery.subtask.*": {"queue": DEFAULT_QUEUE},
+    "app.services.celery.subtask.*": {"queue": SUBTASKS_QUEUE},
 }
 cel_app.conf.broker_transport_options = {"visibility_timeout": 120}

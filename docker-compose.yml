@@ -18,8 +18,8 @@ services:
       DB_HOST: example_db
       DB_PORT: 3306
       DB_NAME: fast_api_base
-      CELERY_BROKER: "redis://example_redis:6379"
-      CELERY_BACKEND: "redis://example_redis:6379"
+      CELERY_BROKER: "redis://example_redis:6379/"
+      CELERY_BACKEND: "redis://example_redis:6379/"
     volumes:
       - ./app/:/app/app
     depends_on:
@@ -55,4 +55,4 @@ services:
     ports:
       - '6379:6379'
     expose:
-      - '3306'
+      - '6379'
