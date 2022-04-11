@@ -27,4 +27,3 @@ def schedule_dummy_func(dummy: DummyFunc) -> str:
     task = sig.apply_async()
     # return the task id
     return task.id
-

@@ -22,6 +22,7 @@ class CeleryConfig:
     }
     broker_transport_options = {"visibility_timeout": 120}
 
+
 cel_app = Celery()
 
 cel_app.config_from_object(CeleryConfig)
