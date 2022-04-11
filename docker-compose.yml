@@ -1,5 +1,6 @@
 volumes:
   my_db:
+  redis: {}
 
 services:
   my_app:
@@ -10,6 +11,8 @@ services:
     # restart: on-failure
     ports:
       - "8080:8000"
+    expose:
+      - "8000"
     environment:
       HAPPY_FUN_TIMES: "now"
       PYTHONPATH: ./app/
@@ -18,8 +21,8 @@ services:
       DB_HOST: example_db
       DB_PORT: 3306
       DB_NAME: fast_api_base
-      CELERY_BROKER: "redis://example_redis:6379/"
-      CELERY_BACKEND: "redis://example_redis:6379/"
+      CELERY_BROKER_URL: "redis://example_redis:6379/0"
+      CELERY_RESULT_BACKEND: "redis://example_redis:6379/1"
     volumes:
       - ./app/:/app/app
     depends_on:
@@ -31,7 +34,7 @@ services:
   db:
     image: mysql/mysql-server:5.7
     restart: always
-    container_name: example_db
+    container_name: mysqldb
     environment:
       MYSQL_DATABASE: 'fast_api_base'
       # So you don't have to use root, but you can if you like
@@ -52,6 +55,8 @@ services:
   redis:
     image: redis:alpine
     container_name: example_redis
+    volumes:
+      - "redis:/data"
     ports:
       - '6379:6379'
     expose:
