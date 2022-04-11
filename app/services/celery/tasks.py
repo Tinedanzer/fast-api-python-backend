@@ -11,12 +11,34 @@ from app.models.task_runner import DummyFunc
     argsrepr="(arg_1, arg_2)",
 )
 def dummy_func(arg_1: str, arg_2: int) -> None:
+    """
+    Example function with the celery task decorator
+
+    Args:
+        arg_1 (str): first argument that is a string
+        arg_2 (int): second argument that is an int
+
+    Returns:
+        None
+    """
+
     logger.info(arg_1)
     logger.info(arg_2)
     print(arg_1, arg_2)
 
 
 def schedule_dummy_func(dummy: DummyFunc) -> str:
+    """
+    Function to schedule the dummy_func task. Will be worked by the
+    next available celery worker.
+
+    Args:
+        dummy (DummyFunc): model for the payload to be applied to the function
+
+    Returns:
+        str: the task ID associated with the scheduled task
+    """
+
     # generate the celery signature to be called asynchronously
     sig = signature(
         dummy_func.name,
