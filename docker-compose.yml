@@ -15,6 +15,8 @@ services:
       - "8000"
     environment:
       HAPPY_FUN_TIMES: "now"
+      ENV: "dev"
+      LOG_LEVEL: INFO
       PYTHONPATH: ./app/
       DB_USER_MIG: user
       DB_PASSWORD_MIG: password

@@ -12,6 +12,6 @@ fi
 
 # coverage run -m pytest
 # coverage report -m
-# coverage --rcfile=/src/tests/.coveragerc report
-# --cov-config=/src/tests/.coveragerc
-# pytest # --cov-report term-missing --cov=src --cov-config=/src/tests/.coveragerc tests/
+# coverage --rcfile=/app/tests/.coveragerc report
+# coverage --cov-config=/app/tests/.coveragerc
+pytest --cov-report term-missing --cov=app --cov-config=/app/tests/.coveragerc tests/

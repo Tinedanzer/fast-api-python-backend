@@ -1,7 +1,10 @@
 from celery import signature
-from loguru import logger
+import logging
 from app.resources.celery import cel_app
 from app.models.task_runner import DummyFunc
+
+
+logger = logging.getLogger(__name__)
 
 
 @cel_app.task(
@@ -21,7 +24,8 @@ def dummy_func(arg_1: str, arg_2: int) -> None:
     Returns:
         None
     """
-
+    # obj = MyFirstObject()
+    # obj.execute()
     logger.info(arg_1)
     logger.info(arg_2)
     print(arg_1, arg_2)

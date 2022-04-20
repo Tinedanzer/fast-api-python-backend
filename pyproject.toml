@@ -8,11 +8,11 @@ authors = ["Andrew Kalz <andrew.kalz@gmail.com>"]
 python = "^3.9"
 fastapi = "^0.75.0"
 pydantic = "^1.9.0"
-loguru = "^0.6.0"
 uvicorn = "^0.17.6"
 alembic = "^1.7.7"
 PyMySQL = "^1.0.2"
 celery = {extras = ["redis"], version = "^5.2.6"}
+logging-json = "^0.2.1"
 
 [tool.poetry.dev-dependencies]
 pytest = "^7.1.1"

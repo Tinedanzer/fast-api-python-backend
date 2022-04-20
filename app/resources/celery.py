@@ -1,5 +1,11 @@
-from celery import Celery
+import celery
+import logging
+from celery.signals import after_setup_task_logger
+from celery.app.log import TaskFormatter
 from os import getenv
+
+
+logger = logging.getLogger(__name__)
 
 
 DEFAULT_QUEUE = "default"
@@ -21,11 +27,27 @@ class CeleryConfig:
         "app.services.celery.subtasks.*": {"queue": SUBTASKS_QUEUE},
     }
     broker_transport_options = {"visibility_timeout": 120}
+    worker_redirect_stdouts = False
 
 
-cel_app = Celery()
+cel_app = celery.Celery()
+
+
+@after_setup_task_logger.connect
+def setup_task_logger(logger, *args, **kwargs):
+    for handler in logger.handlers:
+        handler.setFormatter(TaskFormatter('%(asctime)s - %(task_id)s - %(task_name)s - %(name)s - %(levelname)s - %(message)s'))
+
 
 cel_app.config_from_object(CeleryConfig)
+setup_task_logger(logger=logger)
+logger.info("blergh")
+
+
+@celery.signals.setup_logging.connect
+def on_setup_logging(**kwargs):
+    pass
+
 
 cel_app.autodiscover_tasks(
     [

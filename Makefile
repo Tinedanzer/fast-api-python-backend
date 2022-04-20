@@ -7,6 +7,9 @@ clean:
 build:
 	docker build --target runner -t fasi_api_base .
 
+build-no-cache:
+	docker build --no-cache --target runner -t fasi_api_base .
+
 build-test:
 	docker build --target tester -t fasi_api_base_test .
 
