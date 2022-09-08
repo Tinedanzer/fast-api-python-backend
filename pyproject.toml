@@ -2,7 +2,7 @@
 name = "fast-api-base"
 version = "0.1.0"
 description = ""
-authors = ["Andrew Kalz <andrew.kalz@gmail.com>"]
+authors = ["Andrew Kalz <andrew.kalz@gmail.com>", "John Hill <johnhillallen@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.9"
@@ -12,6 +12,7 @@ loguru = "^0.6.0"
 uvicorn = "^0.17.6"
 alembic = "^1.7.7"
 PyMySQL = "^1.0.2"
+SQLAlchemy = "^1.4.40"
 
 [tool.poetry.dev-dependencies]
 pytest = "^7.1.1"
