@@ -1,10 +1,8 @@
-# from sqlalchemy import create_engine
-# from sqlalchemy import Column, String, Integer, Float, Boolean
-# from sqlalchemy.ext.declarative import declarative_base
-# from sqlalchemy.orm import sessionmaker
+from sqlalchemy import create_engine
+from sqlalchemy import Column, String, Integer, Float, Boolean
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
 # from fastapi import APIRouter
-
-# # from app.db.migrations import run_migrations_online
 
 
 # engine = create_engine('sqlite:///travelers.sqlite3', echo=True)
