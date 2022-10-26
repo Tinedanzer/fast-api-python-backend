@@ -1,8 +1,11 @@
 from logging.config import fileConfig
 from os import getenv
+from time import sleep
 
 from sqlalchemy import engine_from_config
 from sqlalchemy import pool
+from sqlalchemy import text
+import sqlite3
 
 import pymysql
 pymysql.install_as_MySQLdb()
@@ -10,7 +13,7 @@ pymysql.install_as_MySQLdb()
 from alembic import context
 
 from sqlalchemy import create_engine
-from sqlalchemy import Column, String, Integer, Float, Boolean
+from sqlalchemy import Column, String, Integer
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
@@ -78,7 +81,7 @@ target_metadata = None
 # new
 Session = sessionmaker(bind=engine)
 session = Session()
-# i think this is where it is breaking, investigate tomorrow  LOOK AT THIS AND DELETE
+
 class Travelers(base):
     __tablename__ = 'Travelers'
     id = Column(Integer, primary_key = True)
@@ -95,6 +98,23 @@ class Travelers(base):
         self.creation_date = creation_date
 
 base.metadata.create_all(engine)
-insert_stuff = Travelers(1,'John','email@email.com','123 happy street', "20221005")
-session.add(insert_stuff)
-session.commit()
+# insert_stuff = Travelers(2,'Andrew','ail@email.com','123 sad street', "20221006")
+# session.add(insert_stuff)
+# session.commit()
+
+# engine.connect()
+
+# def Return():
+#     with engine.connect() as con:
+#         rs = con.execute('SELECT * FROM Travelers')
+#         print(rs)
+#         sleep(5)
+#         return rs
+
+# con = sqlite3.connect("travelers.sqlite3")
+# # look up cursor JOHN
+# c = con.cursor()
+# c.execute('''SELECT * FROM Travelers''')
+# d = c.fetchall()
+# # print(type(d))
+# print(d)

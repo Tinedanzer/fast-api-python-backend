@@ -5,10 +5,10 @@ from app.models.carebear import (
 from app.services.APIendpoint import (
     carebear_output,
 )
-from app.services.db_setup import *
-# from app.db.migrations.env import(
-#     Travelers,
-# )
+# from app.services.db_setup import *
+from app.services.db_connection import(
+    get_travelers,
+)
 
 router = APIRouter()
 
@@ -24,8 +24,13 @@ def is_carebear() -> Carebear():
 def carebear_response():
     return carebear_output
 
-# @router.post(
-#     "/travelerPost"
-# )
-# def traveler_post():
-#     return Travelers
+@router.get(
+    "/travelerPost"
+)
+def traveler_post():
+    return get_travelers()
+    # value = Return()
+    # for item in value:
+    #     thing = item
+    # return thing
+    # return Return()
