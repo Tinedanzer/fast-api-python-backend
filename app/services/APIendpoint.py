@@ -13,8 +13,17 @@ repurpose = xmltodict.parse(response.text)
 # print(d)
 # print(tree, c)
 # print(response.content)
-carebear_output = repurpose
+# print(repurpose.get('TravelerinformationResponse',0).get('travelers',0).get('Travelerinformation',0))
+travelers_output = repurpose.get('TravelerinformationResponse',0).get('travelers',0).get('Travelerinformation',0)
+
+final_traveler_output={}
+for i in range(len(travelers_output)):
+    field_list = ['id','name','email,','address','creation_date']
+    final_traveler_output.update(dict(zip(field_list, travelers_output[i].values())))
+    # final_travler_output=final_traveler_output[i]
+# del final_traveler_output[1]
+# print((travelers_output))
+print(final_traveler_output)
 with open("output.text",'w') as outputfile:
     outputfile.write(json.dumps(repurpose)) 
-# print(repurpose)
-print("This is the status code: " + str(response.status_code))
+# print("This is the status code: " + str(response.status_code))
