@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 from app.services.APIendpoint import (
-    repurpose,
+    final_traveler_output,
 )
 
 

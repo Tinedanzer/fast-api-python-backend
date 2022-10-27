@@ -3,7 +3,7 @@ from app.models.carebear import (
     Carebear,
 )
 from app.services.APIendpoint import (
-    travelers_output,
+    final_traveler_output,
 )
 # from app.services.db_setup import *
 from app.services.db_connection import(
@@ -23,8 +23,8 @@ def is_carebear() -> Carebear():
     "/carebearAPI"
 )
 def carebear_response():
-    table_insertion('Travelers', travelers_output)
-    return travelers_output
+    # table_insertion('Travelers', final_traveler_output)
+    return final_traveler_output
 
 @router.get(
     "/travelerPost"
