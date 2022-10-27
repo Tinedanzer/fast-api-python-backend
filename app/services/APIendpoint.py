@@ -18,7 +18,7 @@ travelers_output = repurpose.get('TravelerinformationResponse',0).get('travelers
 
 final_traveler_output=[]
 for i in range(len(travelers_output)):
-    field_list = ['id','name','email,','address','creation_date']
+    field_list = ['id','name','email','address','creation_date']
     final_traveler_output.append((dict(zip(field_list, travelers_output[i].values()))))
 # print((travelers_output))
 print(final_traveler_output)

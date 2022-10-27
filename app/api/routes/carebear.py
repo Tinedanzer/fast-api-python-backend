@@ -23,7 +23,7 @@ def is_carebear() -> Carebear():
     "/carebearAPI"
 )
 def carebear_response():
-    # table_insertion('Travelers', final_traveler_output)
+    table_insertion('Travelers', final_traveler_output)
     return final_traveler_output
 
 @router.get(
