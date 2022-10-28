@@ -17,6 +17,8 @@ repurpose = xmltodict.parse(response.text)
 travelers_output = repurpose.get('TravelerinformationResponse',0).get('travelers',0).get('Travelerinformation',0)
 
 final_traveler_output=[]
+# i realized the key names coming in through the APi were mispelled and also not to my liking.
+# I changed things up by creating a new list full of dictionaries with 'keys' updated.(field_list)
 for i in range(len(travelers_output)):
     field_list = ['id','name','email','address','creation_date']
     final_traveler_output.append((dict(zip(field_list, travelers_output[i].values()))))

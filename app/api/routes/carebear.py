@@ -16,20 +16,20 @@ router = APIRouter()
 @router.get(
     "/carebear",
 )
-def is_carebear() -> Carebear():
+def is_probably_not_carebear() -> Carebear():
     return Carebear()
 
 @router.get(
-    "/carebearAPI"
+    "/Traveler_Insert_API_intoDB"
 )
-def carebear_response():
+def traveler_creation():
     table_insertion('Travelers', final_traveler_output)
     return final_traveler_output
 
 @router.get(
-    "/travelerPost"
+    "/GetTravelerInfo"
 )
-def traveler_post():
+def traveler_get_all():
     return get_travelers()
     # value = Return()
     # for item in value:
